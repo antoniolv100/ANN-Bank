@@ -1,4 +1,5 @@
 from pickletools import optimize
+import PySimpleGUI as sg
 import numpy as np
 import pandas as pd
 from sklearn import metrics
@@ -59,5 +60,34 @@ print(cm)
 print(accuracy_score(y_test, y_pred))
 
 #mark program is done
-print("Program Finish")
+print("Program Finish Buidling and Testing ANN")
+
+# All the stuff inside your window. 
+Left_Side = [
+    [sg.Text('Some text on Row 1')],
+    [sg.Text('Enter something on Row 2'), sg.InputText(key='-IN-')],
+    [sg.OK(), sg.Cancel()],
+]
+Right_Side = [
+    [sg.Text('Some Thing')],
+    [sg.Text(size=(40,1),key = '-output-')]
+]
+
+layout = [
+    [
+        sg.Column(Left_Side),
+        sg.VSeparator(),
+        sg.Column(Right_Side),
+    ]
+]
+
+# Create the Window
+window = sg.Window('Window Title', layout)
+# Event Loop to process "events"
+while True:
+    event, values = window.read()
+    if event in (sg.WIN_CLOSED, 'Cancel'):
+        break
+
+window.close()
 
